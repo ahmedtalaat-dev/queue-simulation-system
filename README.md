@@ -109,7 +109,13 @@ Run Simulation
 * Add Graph Visualization 📈  
 * Add Queue Animation 🎬  
 * Add Multi-Server Support  
-* Add User-controlled parameters  
+* Add User-controlled parameters
+
+---
+
+## 🔴 Live Preview
+
+👉 [View Live Demo](https://queue-simulation-system.vercel.app/)
 
 ---
 
