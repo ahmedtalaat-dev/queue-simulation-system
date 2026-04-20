@@ -1,65 +1,15 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Queue Simulation System</title>
-    <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-
-
-        h1 {
-            margin-bottom: 20px;
-        }
-
-        input {
-            padding: 10px;
-            width: 200px;
-            margin-right: 10px;
-        }
-
-        button {
-            padding: 10px 20px;
-            cursor: pointer;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background: #0056b3;
-        }
-
-        table {
-            margin: 30px auto;
-            border-collapse: collapse;
-            width: 90%;
-            background: white;
-        }
-
-        th,
-        td {
-            border: 1px solid #333;
-            padding: 10px;
-        }
-
-        th {
-            background: #007bff;
-            color: white;
-        }
-    </style>
+    <title>Queue Simulation System (2 Servers)</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>Queue Simulation System</h1>
+    <h1>Queue Simulation System </h1>
 
     <input type="number" id="customersCount" placeholder="Number of customers">
     <button onclick="runSimulation()">Run Simulation</button>
@@ -73,6 +23,7 @@
                 <th>Service Time</th>
                 <th>Start</th>
                 <th>End</th>
+                <th>Server</th>
                 <th>Waiting</th>
             </tr>
         </thead>
@@ -81,118 +32,7 @@
 
     <h3 id="avgWaiting"></h3>
 
-    <script>
-        class Customer {
-            constructor(id, interArrival, arrival, serviceTime, start, end) {
-                this.id = id;
-                this.interArrival = interArrival;
-                this.arrival = arrival;
-                this.serviceTime = serviceTime;
-                this.start = start;
-                this.end = end;
-            }
-
-            getWaitingTime() {
-                return this.start - this.arrival;
-            }
-        }
-
-        class QueueSystem {
-            constructor() {
-                this.customers = [];
-            }
-
-            random(max) {
-                return Math.floor(Math.random() * max);
-            }
-
-            simulate(n) {
-                this.customers = [];
-
-                for (let i = 0; i < n; i++) {
-                    let id = i + 1;
-
-                    let interArrival = i === 0 ? 0 : this.random(10);
-
-                    let arrival =
-                        i === 0
-                            ? 0
-                            : this.customers[i - 1].arrival + interArrival;
-
-                    let serviceTime = this.random(4) + 1;
-
-                    let start =
-                        i === 0
-                            ? 0
-                            : Math.max(
-                                this.customers[i - 1].end,
-                                arrival
-                            );
-
-                    let end = start + serviceTime;
-
-                    let customer = new Customer(
-                        id,
-                        interArrival,
-                        arrival,
-                        serviceTime,
-                        start,
-                        end
-                    );
-
-                    this.customers.push(customer);
-                }
-            }
-
-            getAverageWaiting() {
-                let total = 0;
-
-                this.customers.forEach(c => {
-                    total += c.getWaitingTime();
-                });
-
-                return (total / this.customers.length).toFixed(2);
-            }
-        }
-
-        const system = new QueueSystem();
-
-        function runSimulation() {
-            const n = document.getElementById("customersCount").value;
-
-            if (!n || n <= 0) {
-                alert("Enter a valid number!");
-                return;
-            }
-
-            system.simulate(n);
-            display(system.customers);
-
-            document.getElementById("avgWaiting").innerText =
-                "Average Waiting Time: " + system.getAverageWaiting();
-        }
-
-        function display(customers) {
-            const tbody = document.querySelector("#resultTable tbody");
-            tbody.innerHTML = "";
-
-            customers.forEach(c => {
-                let row = `
-          <tr>
-            <td>${c.id}</td>
-            <td>${c.interArrival}</td>
-            <td>${c.arrival}</td>
-            <td>${c.serviceTime}</td>
-            <td>${c.start}</td>
-            <td>${c.end}</td>
-            <td>${c.getWaitingTime()}</td>
-          </tr>
-        `;
-                tbody.innerHTML += row;
-            });
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
