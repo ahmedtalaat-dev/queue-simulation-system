@@ -9,12 +9,16 @@ This project simulates a **single-server queue** using logic similar to Excel si
 ## 📌 Features
 
 * Simulate multiple customers in a queue system  
+* **2-Server Load Balancing System**
+  * Server 1 & Server 2 working in parallel  
+  * Automatic assignment based on best available server  
 * Random inter-arrival and service times  
 * Calculate:
   * Arrival Time  
   * Service Start Time  
   * Service End Time  
   * Waiting Time  
+  * Assigned Server  
 * Display results in a dynamic table  
 * Calculate **Average Waiting Time**
 
