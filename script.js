@@ -21,7 +21,7 @@ class Customer {
         this.server = server;
     }
 
-    // Calc waiting time
+    // Calc Waiting Time
     getWaitingTime() {
         return this.start - this.arrival;
     }
