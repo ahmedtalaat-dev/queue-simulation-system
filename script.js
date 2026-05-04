@@ -35,10 +35,6 @@ class QueueSystem {
     server1Time = 0;
     server2Time = 0;
 
-    constructor() {
-        this.reset();
-    }
-
     reset() {
         this.customers = [];
         this.server1Time = 0;
@@ -109,10 +105,9 @@ class QueueSystem {
 }
 
 
-/* ===================== UI FUNCTIONS ===================== */
-// display()
-// runSimulation()
+/* ===================== UI ===================== */
 
+// Display
 function display(customers) {
     let tbody = document.querySelector("#resultTable tbody");
     tbody.innerHTML = "";
@@ -135,6 +130,7 @@ function display(customers) {
     }
 }
 
+// Run Simulation
 function runSimulation() {
     let n = parseInt(document.getElementById("customersCount").value);
 
@@ -152,6 +148,4 @@ function runSimulation() {
 
 
 /* ===================== SYSTEM INITIALIZATION ===================== */
-// const system = new QueueSystem();
-
 const system = new QueueSystem();
