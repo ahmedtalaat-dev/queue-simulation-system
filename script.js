@@ -1,4 +1,3 @@
-"use strict";
 
 /* ===================== CUSTOMER CLASS ===================== */
 class Customer {
@@ -11,6 +10,7 @@ class Customer {
     end = 0;
     server = "";
 
+    // Customer constructor
     constructor(id, interArrival, arrival, serviceTime, start, end, server) {
         this.id = id;
         this.interArrival = interArrival;
@@ -21,6 +21,7 @@ class Customer {
         this.server = server;
     }
 
+    // Calc waiting time
     getWaitingTime() {
         return this.start - this.arrival;
     }
@@ -108,28 +109,10 @@ class QueueSystem {
 }
 
 
-/* ===================== SYSTEM INITIALIZATION ===================== */
-const system = new QueueSystem();
+/* ===================== UI FUNCTIONS ===================== */
+// display()
+// runSimulation()
 
-
-/* ===================== RUN SIMULATION FUNCTION ===================== */
-function runSimulation() {
-    let n = parseInt(document.getElementById("customersCount").value);
-
-    if (isNaN(n) || n <= 0) {
-        alert("Enter a valid number!");
-        return;
-    }
-
-    system.simulate(n);
-    display(system.customers);
-
-    document.getElementById("avgWaiting").innerText =
-        "Average Waiting Time: " + system.getAverageWaiting();
-}
-
-
-/* ===================== DISPLAY FUNCTION ===================== */
 function display(customers) {
     let tbody = document.querySelector("#resultTable tbody");
     tbody.innerHTML = "";
@@ -151,3 +134,24 @@ function display(customers) {
         `;
     }
 }
+
+function runSimulation() {
+    let n = parseInt(document.getElementById("customersCount").value);
+
+    if (isNaN(n) || n <= 0) {
+        alert("Enter a valid number!");
+        return;
+    }
+
+    system.simulate(n);
+    display(system.customers);
+
+    document.getElementById("avgWaiting").innerText =
+        "Average Waiting Time: " + system.getAverageWaiting();
+}
+
+
+/* ===================== SYSTEM INITIALIZATION ===================== */
+// const system = new QueueSystem();
+
+const system = new QueueSystem();
